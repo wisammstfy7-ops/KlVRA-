@@ -1,0 +1,19 @@
+{
+  "name": "KIVRA — Your World. Your Challenge.",
+  "short_name": "KIVRA",
+  "description": "Nutrition, fitness, challenges and community.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d0c",
+  "theme_color": "#090d0c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

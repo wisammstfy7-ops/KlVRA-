@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d0c">
+  <meta name="description" content="KIVRA — Nutrition, fitness and challenges in one place.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <title>KIVRA — Your world. Your challenge.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="KIVRA home"><span class="brand-mark">K</span><span>KIVRA</span></a>
+      <div class="side-label" data-i18n="workspace">مساحتك</div>
+      <button class="nav-item active" data-page="home"><span>◈</span><b data-i18n="overview">نظرة عامة</b></button>
+      <button class="nav-item" data-page="nutrition"><span>✳</span><b data-i18n="nutrition">التغذية</b></button>
+      <button class="nav-item" data-page="challenges"><span>⚑</span><b data-i18n="challenges">التحديات</b></button>
+      <button class="nav-item" data-page="community"><span>◎</span><b data-i18n="community">المجتمع</b></button>
+      <button class="nav-item" data-page="profile"><span>◉</span><b data-i18n="profile">ملفي</b></button>
+      <div class="sidebar-bottom">
+        <div class="mini-profile"><div class="avatar">W</div><div><strong id="sideName">Wesam</strong><small data-i18n="starter">عضو جديد</small></div></div>
+        <button class="nav-item" data-page="settings"><span>⚙</span><b data-i18n="settings">الإعدادات</b></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">K</span><b>KIVRA</b></div>
+        <div class="topbar-right">
+          <span class="live-dot"></span><span class="top-caption" data-i18n="dailyJourney">رحلتك اليومية</span>
+          <button class="icon-btn" id="langBtn" aria-label="Change language">EN</button>
+          <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div><p class="eyebrow" data-i18n="goodDay">ابدأ بخطوة صغيرة</p><h1><span data-i18n="welcome">أهلاً بك،</span> <span id="welcomeName">وسام</span> <span class="wave">✦</span></h1><p class="muted" data-i18n="welcomeSub">كل اختيار صحي اليوم يصنع فرقاً غداً.</p></div>
+          <button class="primary-btn" data-go="nutrition"><span>＋</span><span data-i18n="addMeal">أضف وجبة</span></button>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-copy"><span class="pill"><i></i><span data-i18n="yourDailyProgress">تقدمك اليومي</span></span><h2 data-i18n="smallSteps">التغيير الكبير<br>يبدأ بخطوة.</h2><p data-i18n="heroSub">تابع طعامك، تحرك أكثر، واحتفل بكل تقدم.</p><button class="ghost-btn" data-go="challenges" data-i18n="exploreChallenges">اكتشف التحديات <span>↗</span></button></div>
+          <div class="hero-orbit"><div class="orbit-ring"></div><div class="orbit-core"><span>✦</span><b>K</b></div><div class="orbit-tag">MOVE<br>BETTER</div></div>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow" data-i18n="today">اليوم</p><h2 data-i18n="dailyOverview">ملخص يومك</h2></div><span class="date-chip" id="todayDate"></span></div>
+        <div class="stats-grid">
+          <article class="stat-card calorie-card"><div class="stat-top"><span data-i18n="calories">السعرات الحرارية</span><span class="stat-icon green">✳</span></div><div class="stat-number"><strong id="calConsumed">0</strong><small> / <span id="calGoal">2000</span> <span data-i18n="kcal">سعرة</span></small></div><div class="progress"><span id="calProgress"></span></div><div class="stat-foot"><span id="calRemaining">2000</span> <span data-i18n="remaining">متبقية</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="protein">البروتين</span><span class="stat-icon">◇</span></div><div class="stat-number"><strong id="proteinValue">0</strong><small> / <span id="proteinGoal">120</span> g</small></div><div class="progress"><span id="proteinProgress"></span></div><div class="stat-foot" data-i18n="dailyTarget">هدفك اليومي</div></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="carbs">الكربوهيدرات</span><span class="stat-icon">⌁</span></div><div class="stat-number"><strong id="carbsValue">0</strong><small> g</small></div><div class="stat-foot" data-i18n="fromMeals">من الوجبات المسجلة</div></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="water">الماء</span><span class="stat-icon blue">◌</span></div><div class="stat-number"><strong id="waterValue">0</strong><small> / 8 <span data-i18n="cups">أكواب</span></small></div><div class="water-actions"><button id="waterMinus">−</button><button id="waterPlus">＋</button></div></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="foodDiary">سجل الطعام</p><h3 data-i18n="todaysMeals">وجبات اليوم</h3></div><button class="text-btn" data-go="nutrition" data-i18n="viewAll">عرض الكل ↗</button></div><div id="homeMeals" class="meal-list empty-state"><span class="empty-icon">✳</span><b data-i18n="noMeals">لم تسجل أي وجبة بعد</b><small data-i18n="addFirstMeal">أضف أول وجبة لتبدأ متابعة يومك.</small></div></section>
+          <section class="panel challenge-panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="keepMomentum">حافظ على حماسك</p><h3 data-i18n="challengeOfWeek">تحدي الأسبوع</h3></div><span class="badge">7 DAYS</span></div><div class="challenge-art">✦</div><h4 data-i18n="waterChallenge">تحدي شرب الماء</h4><p class="muted" data-i18n="waterChallengeSub">اشرب 8 أكواب ماء يومياً لمدة 7 أيام.</p><div class="challenge-progress"><span id="waterChallengeProgress"></span></div><div class="challenge-bottom"><small id="waterChallengeText">0 / 8 cups today</small><button class="small-btn" data-go="challenges" data-i18n="join">استكشف</button></div></section>
+        </div>
+      </section>
+
+      <section class="page" id="page-nutrition">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="fuelYourBody">غذِّ جسمك بوعي</p><h1 data-i18n="nutritionTitle">التغذية الذكية</h1><p class="muted" data-i18n="nutritionSub">سجّل وجباتك وتابع العناصر الغذائية خلال يومك.</p></div></div>
+        <div class="nutrition-layout">
+          <div class="panel scanner-panel"><div class="panel-head"><div><p class="eyebrow">KIVRA AI</p><h3 data-i18n="foodScanner">ماسح الطعام</h3></div><span class="ai-badge">AI</span></div>
+            <label class="upload-zone" for="mealPhoto"><span class="upload-symbol">＋</span><b data-i18n="uploadMealPhoto">ارفع صورة طبقك</b><small data-i18n="photoHint">اختر صورة واضحة للطعام من جهازك</small><img id="photoPreview" alt="Meal preview" hidden></label>
+            <input type="file" id="mealPhoto" accept="image/*" hidden>
+            <button class="primary-btn full-btn" id="analyzePhoto"><span>✧</span><span data-i18n="analyzeWithAI">تحليل الصورة بالذكاء الاصطناعي</span></button>
+            <p class="fine-print" data-i18n="aiNote">يتطلب التحليل الذكي ربط خدمة AI آمنة على الخادم. لن نعرض أرقاماً تخمينية على أنها تحليل حقيقي.</p>
+            <div id="scanStatus" class="scan-status" aria-live="polite"></div>
+          </div>
+          <div class="panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="quickAdd">إضافة سريعة</p><h3 data-i18n="searchFood">ابحث عن طعام</h3></div><span class="stat-icon green">⌕</span></div>
+            <input class="search-input" id="foodSearch" type="search" placeholder="ابحث عن طبق أو مكون..." data-i18n-placeholder="searchPlaceholder">
+            <div class="food-results" id="foodResults"></div>
+            <div class="custom-food"><button class="outline-btn full-btn" id="customFoodBtn" data-i18n="customEntry">إدخال طعام يدوياً</button></div>
+          </div>
+        </div>
+        <div class="panel diary-panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="yourLog">سجلك</p><h3 data-i18n="mealDiary">سجل الوجبات</h3></div><span class="date-chip" id="nutritionDate"></span></div><div id="nutritionMeals" class="meal-list empty-state"><span class="empty-icon">✳</span><b data-i18n="noMeals">لم تسجل أي وجبة بعد</b><small data-i18n="addFirstMeal">أضف أول وجبة لتبدأ متابعة يومك.</small></div></div>
+      </section>
+
+      <section class="page" id="page-challenges">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="consistencyWins">الاستمرارية تصنع الفرق</p><h1 data-i18n="challengesTitle">تحديات KIVRA</h1><p class="muted" data-i18n="challengesSub">خطوات بسيطة، إنجازات تستحق الاحتفال.</p></div></div>
+        <div class="challenge-grid">
+          <article class="challenge-tile"><div class="tile-icon">◌</div><span class="badge">WELLNESS</span><h3 data-i18n="waterChallenge">تحدي شرب الماء</h3><p data-i18n="waterChallengeSub">اشرب 8 أكواب ماء يومياً لمدة 7 أيام.</p><div class="tile-footer"><span data-i18n="daily">يومي</span><button class="small-btn join-challenge" data-challenge="water" data-i18n="joinChallenge">انضم للتحدي</button></div></article>
+          <article class="challenge-tile"><div class="tile-icon">↗</div><span class="badge">MOVEMENT</span><h3 data-i18n="moveChallenge">تحدي الحركة</h3><p data-i18n="moveChallengeSub">خصص 20 دقيقة للحركة كل يوم.</p><div class="tile-footer"><span data-i18n="daily">يومي</span><button class="small-btn join-challenge" data-challenge="move" data-i18n="joinChallenge">انضم للتحدي</button></div></article>
+          <article class="challenge-tile"><div class="tile-icon">✳</div><span class="badge">NUTRITION</span><h3 data-i18n="balancedChallenge">طبق متوازن</h3><p data-i18n="balancedChallengeSub">أضف خضاراً إلى وجبتين يومياً.</p><div class="tile-footer"><span data-i18n="daily">يومي</span><button class="small-btn join-challenge" data-challenge="balanced" data-i18n="joinChallenge">انضم للتحدي</button></div></article>
+        </div>
+        <div class="panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="yourProgress">تقدمك</p><h3 data-i18n="myChallenges">تحدياتي</h3></div></div><div id="joinedChallenges" class="joined-list muted" data-i18n="noChallenges">لم تنضم إلى تحدٍ بعد.</div></div>
+      </section>
+
+      <section class="page" id="page-community">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="togetherStronger">معاً أقوى</p><h1 data-i18n="communityTitle">مجتمع KIVRA</h1><p class="muted" data-i18n="communitySub">شارك تقدمك واستلهم من رحلات الآخرين.</p></div></div>
+        <div class="panel composer"><div class="avatar">W</div><input id="postInput" type="text" placeholder="ما الإنجاز الذي تود مشاركته؟" data-i18n-placeholder="postPlaceholder"><button class="primary-btn" id="publishPost" data-i18n="publish">نشر</button></div>
+        <div id="communityFeed" class="feed"></div>
+        <p class="fine-print" data-i18n="communityLocalNote">هذه نسخة تجريبية محلية: المنشورات تظهر على هذا الجهاز فقط حتى ربط قاعدة بيانات وحسابات حقيقية.</p>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="yourJourney">رحلتك</p><h1 data-i18n="profileTitle">ملفك الشخصي</h1></div></div>
+        <div class="panel profile-card"><div class="profile-avatar">W</div><h2 id="profileName">Wesam</h2><p class="muted" id="profileHandle">@kivra_member</p><div class="profile-stats"><div><b id="profileMeals">0</b><small data-i18n="mealsLogged">وجبة مسجلة</small></div><div><b id="profileChallenges">0</b><small data-i18n="challengesJoined">تحديات منضم لها</small></div><div><b id="profilePosts">0</b><small data-i18n="posts">منشورات</small></div></div></div>
+        <div class="panel"><div class="panel-head"><h3 data-i18n="personalGoals">أهدافك الشخصية</h3></div><div class="form-grid"><label><span data-i18n="displayName">الاسم</span><input id="nameInput" value="Wesam"></label><label><span data-i18n="dailyCalorieGoal">هدف السعرات اليومي</span><input id="goalInput" type="number" min="500" max="10000" value="2000"></label><label><span data-i18n="proteinGoalLabel">هدف البروتين (غرام)</span><input id="proteinInput" type="number" min="10" max="500" value="120"></label><label><span data-i18n="goalType">هدفك</span><select id="goalType"><option value="maintain" data-i18n="maintain">المحافظة على الوزن</option><option value="lose" data-i18n="lose">خسارة الوزن</option><option value="gain" data-i18n="gain">زيادة الوزن</option><option value="fitness" data-i18n="fitness">لياقة عامة</option></select></label></div><button class="primary-btn" id="saveProfile" data-i18n="saveChanges">حفظ التغييرات</button><p class="fine-print" data-i18n="goalDisclaimer">الأهداف تقديرية وليست بديلاً عن نصيحة مختص تغذية أو طبيب.</p></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="personalize">خصص تجربتك</p><h1 data-i18n="settingsTitle">الإعدادات</h1></div></div>
+        <div class="panel settings-list"><div class="setting-row"><div><b data-i18n="language">اللغة</b><small data-i18n="languageSub">العربية أو الإنجليزية</small></div><button class="outline-btn" id="langBtn2">English</button></div><div class="setting-row"><div><b data-i18n="appearance">المظهر</b><small data-i18n="appearanceSub">تصميم داكن مريح</small></div><button class="outline-btn" id="themeBtn2" data-i18n="toggleTheme">تبديل المظهر</button></div><div class="setting-row"><div><b data-i18n="dataBackup">بياناتك</b><small data-i18n="dataSub">احتفظ بنسخة من بيانات هذا الجهاز</small></div><div class="row-actions"><button class="outline-btn" id="exportData" data-i18n="export">تصدير</button><button class="outline-btn" id="importDataBtn" data-i18n="import">استيراد</button><input id="importData" type="file" accept="application/json" hidden></div></div><div class="setting-row"><div><b data-i18n="privacy">الخصوصية</b><small data-i18n="privacySub">بياناتك محفوظة محلياً في متصفحك في هذه النسخة.</small></div><span class="badge">LOCAL</span></div></div>
+        <div class="panel"><p class="eyebrow">KIVRA</p><h3 data-i18n="aboutKivra">عن KIVRA</h3><p class="muted" data-i18n="aboutText">منصة تجمع التغذية واللياقة والتحديات والمجتمع في تجربة واحدة.</p><p class="fine-print">Version 1.0.0 · Prototype</p></div>
+      </section>
+      <footer class="footer">KIVRA <span>·</span> YOUR WORLD. YOUR CHALLENGE.</footer>
+    </main>
+    <nav class="bottom-nav">
+      <button class="active" data-page="home"><span>◈</span><small data-i18n="home">الرئيسية</small></button>
+      <button data-page="nutrition"><span>✳</span><small data-i18n="nutrition">التغذية</small></button>
+      <button data-page="challenges"><span>⚑</span><small data-i18n="challenges">التحديات</small></button>
+      <button data-page="community"><span>◎</span><small data-i18n="community">المجتمع</small></button>
+      <button data-page="profile"><span>◉</span><small data-i18n="profile">ملفي</small></button>
+    </nav>
+  </div>
+
+  <dialog id="foodDialog" class="modal">
+    <form method="dialog" class="modal-card" id="foodForm">
+      <div class="modal-head"><div><p class="eyebrow" data-i18n="addToDiary">أضف إلى سجلك</p><h3 id="dialogFoodName">وجبة</h3></div><button class="close-btn" value="cancel">×</button></div>
+      <label><span data-i18n="mealType">نوع الوجبة</span><select id="mealType"><option value="breakfast" data-i18n="breakfast">فطور</option><option value="lunch" data-i18n="lunch">غداء</option><option value="dinner" data-i18n="dinner">عشاء</option><option value="snack" data-i18n="snack">وجبة خفيفة</option></select></label>
+      <label><span data-i18n="servings">عدد الحصص</span><input id="servings" type="number" min="0.25" max="20" step="0.25" value="1"></label>
+      <div class="nutrition-preview" id="nutritionPreview"></div>
+      <button class="primary-btn full-btn" id="confirmAdd" value="default" data-i18n="addMealToLog">إضافة إلى السجل</button>
+    </form>
+  </dialog>
+  <dialog id="customDialog" class="modal">
+    <form method="dialog" class="modal-card" id="customForm">
+      <div class="modal-head"><div><p class="eyebrow" data-i18n="manualEntry">إدخال يدوي</p><h3 data-i18n="customFood">طعام مخصص</h3></div><button class="close-btn" value="cancel">×</button></div>
+      <label><span data-i18n="foodName">اسم الطعام</span><input id="customName" required></label>
+      <div class="form-grid"><label><span data-i18n="calories">السعرات</span><input id="customCalories" type="number" min="0" required></label><label><span data-i18n="protein">البروتين (غ)</span><input id="customProtein" type="number" min="0" value="0"></label><label><span data-i18n="carbs">الكربوهيدرات (غ)</span><input id="customCarbs" type="number" min="0" value="0"></label><label><span data-i18n="fat">الدهون (غ)</span><input id="customFat" type="number" min="0" value="0"></label></div>
+      <button class="primary-btn full-btn" id="saveCustomFood" value="default" data-i18n="continue">متابعة</button>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
